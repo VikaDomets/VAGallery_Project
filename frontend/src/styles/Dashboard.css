@@ -1,0 +1,383 @@
+/* =========================================
+   СВІТЛИЙ ОСОБИСТИЙ КАБІНЕТ (NEW UX)
+   ========================================= */
+
+/* Базовий фон на всю сторінку */
+.dashboard-page { 
+    background-color: var(--bg-main); /* Молочний фон */
+    min-height: 100vh; 
+    padding-top: 80px; /* Тільки під шапку */
+    font-family: var(--font-primary); 
+}
+
+/* Контейнер на всю ширину з відступами */
+.dash-container { 
+    max-width: 1500px; /* Зробили ширшим */
+    margin: 0 auto; 
+    display: grid; 
+    grid-template-columns: 260px 1fr; /* Вужче бокове меню */
+    gap: 40px; 
+    padding: 40px 20px;
+}
+
+/* --- САЙДБАР --- */
+.dash-sidebar { 
+    height: fit-content; 
+    position: sticky;
+    top: 100px; /* Меню "їде" за тобою при скролі */
+}
+
+.dash-profile-info { 
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 40px; 
+    padding-bottom: 20px;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.dash-avatar-large { 
+    width: 50px; 
+    height: 50px; 
+    background: #e2e8f0; 
+    border-radius: 50%; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    font-size: 1.5rem; 
+    color: #94a3b8; 
+}
+
+.dash-name-block {
+    display: flex;
+    flex-direction: column;
+}
+
+.dash-name { 
+    font-size: 1.1rem; 
+    font-weight: 700; 
+    color: var(--text-main); 
+    margin: 0; 
+}
+
+.dash-role-badge { 
+    font-size: 0.8rem; 
+    color: #64748b; 
+}
+
+/* Прогрес-бар (Елегантний дизайн) */
+.dash-progress-box { 
+    padding: 0; 
+    margin-bottom: 30px; 
+    border-bottom: 1px solid #e2e8f0;
+    padding-bottom: 25px;
+}
+.progress-text { 
+    display: flex; 
+    justify-content: space-between; 
+    font-size: 0.85rem; 
+    font-weight: 700; 
+    color: var(--text-main); 
+    margin-bottom: 10px; 
+}
+.progress-bar-bg { 
+    width: 100%; 
+    height: 6px; 
+    background: #e2e8f0; 
+    border-radius: 10px; 
+    overflow: hidden; 
+    margin-bottom: 10px; 
+}
+.progress-bar-fill { 
+    height: 100%; 
+    background: var(--text-main); 
+    border-radius: 10px; 
+    transition: width 0.5s; 
+}
+.progress-hint { 
+    font-size: 0.75rem; 
+    color: var(--gray-text); 
+    margin: 0; 
+    line-height: 1.5; 
+}
+
+/* --- МЕНЮ НАВІГАЦІЇ --- */
+.dash-nav { 
+    display: flex; 
+    flex-direction: column; 
+    gap: 8px; 
+    margin-bottom: 30px; 
+}
+
+.dash-nav-item { 
+    display: flex; 
+    align-items: center; 
+    gap: 15px; 
+    padding: 12px 15px; 
+    color: #475569; 
+    text-decoration: none; 
+    font-weight: 600; 
+    font-size: 0.95rem;
+    border-radius: 12px; 
+    transition: 0.2s; 
+    cursor: pointer; 
+    background: transparent;
+    border: none;
+    text-align: left;
+}
+
+.dash-nav-item i { 
+    width: 20px; 
+    text-align: center; 
+    font-size: 1.1rem; 
+    color: #94a3b8; /* Іконки сірі */
+    transition: 0.2s;
+}
+
+/* АКТИВНИЙ ПУНКТ МЕНЮ */
+.dash-nav-item:hover, .dash-nav-item.active { 
+    background: #f1f5f9; 
+    color: var(--text-main); 
+}
+.dash-nav-item.active i {
+    color: var(--text-main); /* Іконка активного пункту темна */
+}
+
+/* Кнопка виходу */
+.dash-logout { 
+    margin-top: 40px; 
+}
+.dash-logout button { 
+    color: #ef4444; 
+    font-weight: 600; 
+    font-size: 0.95rem; 
+    display: flex; 
+    align-items: center; 
+    gap: 15px; 
+    padding: 12px 15px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    border-radius: 12px;
+}
+.dash-logout button:hover {
+    background: #fee2e2;
+}
+
+/* --- ПРАВА ЧАСТИНА (КОНТЕНТ) --- */
+.dash-content { 
+    background: #ffffff; 
+    border-radius: 20px; 
+    padding: 40px; 
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02); /* Дуже легка тінь */
+    min-height: 700px; 
+}
+
+.content-header { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    margin-bottom: 40px; 
+}
+
+.content-header h1 { 
+    font-family: var(--font-serif); 
+    font-size: 2rem; 
+    color: var(--text-main); 
+    margin: 0; 
+}
+
+/* --- СІТКА КАРТОК (БІЛИЙ ФОН) --- */
+.dash-grid { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); /* ЗРОБИЛИ ШИРШИМИ (з 240 на 320) */
+    gap: 30px; /* Збільшили відстань між картками */
+}
+
+.dash-card { 
+    background: #ffffff; 
+    border: 1px solid #e2e8f0; 
+    border-radius: 15px; 
+    overflow: hidden; 
+    transition: 0.3s;
+}
+.dash-card:hover {
+    border-color: #cbd5e0;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.03);
+}
+
+.card-img-placeholder { 
+    height: 180px; 
+    background: #f1f5f9; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    font-size: 2rem; 
+    color: #cbd5e0; 
+}
+
+.card-info { padding: 20px; }
+.card-info h3 { margin: 0 0 8px 0; font-size: 1.1rem; color: var(--text-main); }
+.card-status { font-size: 0.9rem; font-weight: 600; margin: 0; }
+
+/* --- ІНШЕ (СТАТУСИ, EMPTY STATES) --- */
+.status-badge { display: inline-block; padding: 5px 12px; border-radius: 50px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; }
+.status-pending { background: #fef3c7; color: #b45309; border: 1px solid #fde68a; } 
+.status-approved { background: #dcfce7; color: #15803d; border: 1px solid #bbf7d0; }
+.status-rejected { background: #fee2e2; color: #b91c1c; border: 1px solid #fecaca; } 
+
+.empty-state-box { text-align: center; padding: 80px 20px; background: #f8fafc; border: 2px dashed #e2e8f0; border-radius: 20px; color: #64748b; }
+.empty-state-box i { font-size: 3rem; color: #cbd5e0; margin-bottom: 20px; }
+.empty-state-box h3 { color: var(--text-main); font-family: var(--font-serif); font-size: 1.5rem; margin-bottom: 10px; }
+
+.btn-dash-primary { background: var(--text-main); color: #fff; border: none; padding: 12px 25px; border-radius: 12px; font-weight: 600; cursor: pointer; transition: 0.3s; }
+.btn-dash-primary:hover { background: #000; }
+
+/* Форма додавання */
+/* Форма додавання */
+.add-work-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+
+.upload-section { display: flex; flex-direction: column; }
+.upload-box { 
+    border: 2px dashed #cbd5e0; 
+    border-radius: 15px; 
+    height: 100%; 
+    min-height: 280px; 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center; 
+    text-align: center; 
+    background: #f8fafc; 
+    cursor: pointer; 
+    padding: 0; /* Прибрав внутрішній відступ, щоб картинка була на весь блок */
+    transition: 0.3s; 
+    overflow: hidden;
+    position: relative;
+}
+.upload-box:hover { border-color: var(--text-main); background: #f1f5f9; }
+
+.upload-box-content {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+.upload-box i { font-size: 2.5rem; color: #94a3b8; margin-bottom: 15px; }
+.upload-box p { color: var(--text-main); font-weight: 600; margin-bottom: 5px; }
+.upload-box span { color: var(--gray-text); font-size: 0.8rem; }
+
+.add-work-form label { font-size: 0.85rem; font-weight: 600; margin-bottom: 8px; display: block; color: var(--text-main); }
+.add-work-form input, .add-work-form select, .add-work-form textarea { width: 100%; padding: 14px; border: 1px solid #e2e8f0; border-radius: 10px; background: #fff; margin-bottom: 15px; outline: none; }
+.add-work-form input:focus, .add-work-form select:focus, .add-work-form textarea:focus { border-color: var(--text-main); }
+
+/* --- АДМІН ПАНЕЛЬ (ТАБЛИЦІ) --- */
+.admin-table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+.admin-table th { text-align: left; padding: 15px; background: #f1f5f9; color: var(--text-main); font-weight: 600; border-bottom: 2px solid #e2e8f0; }
+.admin-table td { padding: 15px; border-bottom: 1px solid #e2e8f0; vertical-align: middle; }
+.admin-action-btn { padding: 8px 15px; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; font-size: 0.85rem; transition: 0.3s; }
+.btn-approve { background: #10b981; color: white; margin-right: 10px; }
+.btn-approve:hover { background: #059669; }
+.btn-reject { background: #ef4444; color: white; }
+.btn-reject:hover { background: #dc2626; }
+
+/* Адаптивність */
+@media (max-width: 900px) {
+    .dash-container { grid-template-columns: 1fr; padding: 20px; }
+    .dash-sidebar { position: static; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; background: #fff; padding: 20px; border-radius: 20px; }
+    .dash-profile-info { margin: 0; border: none; padding: 0; }
+    .dash-nav { flex-direction: row; flex-wrap: wrap; width: 100%; margin-top: 20px; }
+    .dash-logout { margin-top: 0; }
+    .add-work-grid { grid-template-columns: 1fr; }
+}
+/* --- КРАСИВІ ЗАОКРУГЛЕНІ ІНПУТИ --- */
+.modern-input {
+    width: 100%;
+    padding: 15px 20px;
+    border: 1px solid #e2e8f0;
+    border-radius: 15px !important; /* Твої круглі кути! */
+    background: #f8fafc;
+    font-size: 0.95rem;
+    color: var(--text-main);
+    transition: 0.3s;
+    outline: none;
+    font-family: var(--font-primary);
+}
+.modern-input:focus {
+    background: #fff;
+    border-color: var(--text-main);
+    box-shadow: 0 0 0 4px rgba(8, 28, 48, 0.05);
+}
+
+/* --- ТЕГИ СТИЛІВ (ЗАМІСТЬ ЖАХЛИВОГО SELECT) --- */
+.skills-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+}
+.skill-pill {
+    background: #f1f5f9;
+    color: #64748b;
+    padding: 8px 18px;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    border: 1px solid #e2e8f0;
+    transition: 0.3s;
+    user-select: none;
+}
+.skill-pill:hover {
+    background: #e2e8f0;
+}
+.skill-pill.active {
+    background: var(--text-main);
+    color: #fff;
+    border-color: var(--text-main);
+}
+
+/* --- КАРТКИ СТАТИСТИКИ ІНВЕСТОРА (ВИПРАВЛЕНО!) --- */
+.investor-stats-grid { 
+    display: grid !important; 
+    grid-template-columns: repeat(4, 1fr) !important; 
+    gap: 20px !important; 
+    margin-top: 20px !important; 
+}
+
+.stat-box { 
+    background: #ffffff !important; 
+    border: 1px solid #e2e8f0 !important; 
+    padding: 25px 20px !important; 
+    border-radius: 15px !important; 
+    text-align: center !important; 
+    box-shadow: 0 4px 15px rgba(0,0,0,0.02) !important; 
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.stat-box h2 { 
+    margin: 0 0 8px 0 !important; 
+    font-size: 1.8rem !important; 
+    font-weight: 700 !important; 
+    color: var(--text-main) !important; 
+}
+
+.stat-box p { 
+    margin: 0 !important; 
+    font-size: 0.85rem !important; 
+    color: var(--gray-text) !important; 
+    font-weight: 600 !important;
+}
+
+@media (max-width: 900px) {
+    .investor-stats-grid { grid-template-columns: repeat(2, 1fr) !important; }
+}
+@media (max-width: 600px) {
+    .investor-stats-grid { grid-template-columns: 1fr !important; }
+}

@@ -1,0 +1,324 @@
+/* =========================================
+   СТОРІНКА ВИСТАВОК ТА ЗБОРІВ
+   ========================================= */
+
+/* УНІФІКОВАНІ ПАРАМЕТРИ СТОРІНОК */
+.page-standard-padding { padding-top: 140px; background-color: var(--bg-main); min-height: 100vh; }
+.page-header-block { margin-bottom: 50px; text-align: left; }
+.page-header-block h1 { font-size: 3.5rem; color: var(--text-main); margin-bottom: 15px; font-family: var(--font-serif); font-weight: 500; }
+.page-header-block p { font-size: 1.1rem; color: var(--gray-text); max-width: 600px; line-height: 1.6; }
+
+/* ФІЛЬТРИ ТА ПОШУК */
+.exh-controls { display: flex; justify-content: space-between; align-items: center; margin-top: 40px; padding-bottom: 15px; border-bottom: 1px solid rgba(0,0,0,0.08); }
+.filter-tabs { display: flex; gap: 40px; }
+.filter-tab { background: transparent; border: none; font-size: 1rem; font-weight: 600; color: #999; padding: 0 0 15px 0; cursor: pointer; transition: 0.3s ease; position: relative; border-bottom: 2px solid transparent; }
+.filter-tab:hover { color: var(--text-main); }
+.filter-tab.active { color: var(--text-main); border-bottom: 2px solid var(--text-main); }
+
+.search-box { position: relative; width: 320px; }
+.search-box input { width: 100%; padding: 12px 45px 12px 15px; border-radius: 12px; border: 1px solid #e2e8f0; background: #fff; font-size: 0.9rem; outline: none; transition: 0.3s; }
+.search-box input:focus { border-color: var(--text-main); }
+.search-box i { position: absolute; right: 15px; top: 50%; transform: translateY(-50%); color: #aaa; }
+
+/* =========================================
+   КАРТКИ ВИСТАВОК
+   ========================================= */
+.exh-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); 
+    gap: 40px;
+    margin-top: 50px;
+    padding-bottom: 100px;
+}
+
+.exh-card {
+    background: #ffffff; 
+    border-radius: 25px;
+    overflow: hidden;
+    transition: 0.4s ease;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.03); 
+    display: flex;
+    flex-direction: column;
+}
+.exh-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.08); }
+
+.exh-card-img {
+    position: relative;
+    height: 320px; /* Велике фото! */
+    background: #f1f5f9;
+}
+.exh-card-img img { width: 100%; height: 100%; object-fit: cover; transition: 0.8s ease; }
+.exh-card:hover img { transform: scale(1.05); }
+
+.grayscale { filter: grayscale(1); opacity: 0.7; }
+
+/* ФІНАНСУВАННЯ (Прогрес-бар на фото) */
+.funding-overlay {
+    position: absolute;
+    bottom: 0; left: 0; width: 100%;
+    /* Замінили синій градієнт на чистий нейтральний чорно-прозорий */
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.85), transparent);
+    padding: 30px 20px 15px; 
+    color: white;
+}
+.progress-container { height: 6px; background: rgba(255,255,255,0.2); border-radius: 10px; margin-bottom: 10px; overflow: hidden; }
+.progress-bar { height: 100%; background: #10b981; border-radius: 10px; } 
+.funding-overlay span { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
+
+/* ТЕКСТ КАРТКИ */
+.exh-card-info {
+    padding: 20px; /* Зменшений відступ */
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+.exh-card-info h2 { font-family: var(--font-serif); font-size: 1.6rem; margin: 10px 0 15px; color: var(--text-main); }
+.exh-date-label { font-size: 0.85rem; color: #64748b; font-weight: 600; text-transform: uppercase; }
+.exh-location { font-size: 0.9rem; color: #64748b; margin-bottom: 25px; }
+
+/* КНОПКИ ТА АВТОР ВНИЗУ (Завжди притиснуті до низу) */
+.btn-invest {
+    background: var(--text-main);
+    color: white; border: none;
+    padding: 14px 28px; border-radius: 12px; 
+    font-weight: 600; cursor: pointer; transition: 0.3s;
+    width: 100%; 
+    font-size: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.btn-invest:hover { background: #10b981; color: white; } 
+
+.status-past { color: #aaa; font-weight: 600; font-size: 0.9rem; text-transform: uppercase; }
+
+/* Автор у картці */
+.exh-author-min {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 0; 
+    padding-top: 15px;
+    border-top: 1px solid #f1f5f9;
+}
+.author-avatar-sm { width: 45px; height: 45px; border-radius: 50%; object-fit: cover; }
+.author-meta .label { display: block; font-size: 0.7rem; text-transform: uppercase; color: #94a3b8; letter-spacing: 1px; font-weight: 600;}
+.author-name { font-weight: 700; color: var(--text-main); text-decoration: none; font-size: 1rem; transition: 0.2s;}
+.author-name:hover { color: #10b981; }
+
+/* =========================================
+   СТОРІНКА ДЕТАЛЕЙ ВИСТАВКИ (ЯК НА РЕФЕРЕНСІ)
+   ========================================= */
+   .exh-detail-page { padding-top: 100px; padding-bottom: 100px; background: var(--bg-main); min-height: 100vh;}
+
+   /* 1. Виправлена кнопка назад (Ніяких рамок!) */
+   .btn-back { 
+       background: transparent !important; 
+       border: none !important; 
+       outline: none !important; 
+       box-shadow: none !important;
+       cursor: pointer;
+       color: var(--text-main); 
+       font-weight: 600; 
+       font-size: 0.95rem; 
+       display: inline-flex; 
+       align-items: center;
+       padding: 0;
+       margin-bottom: 40px; 
+       text-decoration: none;
+   }
+   .btn-back:hover { opacity: 0.7; }
+   
+   /* 2. Верхній блок: Назва зліва, Фото справа */
+   .exh-hero-grid { 
+       display: grid; 
+       grid-template-columns: 1fr 1.5fr; /* Фото займає більше місця */
+       gap: 60px; 
+       align-items: center; 
+       margin-bottom: 80px;
+   }
+   
+   .exh-hero-text h1 { font-family: var(--font-serif); font-size: 3.5rem; color: var(--text-main); margin: 15px 0 20px; line-height: 1.1;}
+   .exh-hero-desc { font-size: 1.1rem; color: #475569; line-height: 1.6; margin-bottom: 30px; max-width: 90%; }
+   .exh-hero-meta { display: flex; flex-direction: column; gap: 15px; margin-bottom: 40px; }
+   .meta-item { display: flex; align-items: center; gap: 12px; color: var(--text-main); font-weight: 600; font-size: 0.95rem; }
+   .meta-item i { color: #94a3b8; font-size: 1.2rem; width: 20px; text-align: center; }
+   
+   /* Одне велике фото виставки */
+   .exh-hero-image { border-radius: 30px; overflow: hidden; box-shadow: 0 20px 50px rgba(0,0,0,0.08); height: 500px; width: 100%;}
+   .exh-hero-image img { width: 100%; height: 100%; object-fit: cover; }
+   
+/* 3. Нижня сітка: Опис зліва (максимально широкий), Автор/Інвест справа */
+.exh-content-grid { 
+    display: grid; 
+    grid-template-columns: 2.5fr 1fr; /* Текст займає майже весь простір, сайдбар вузький */
+    gap: 80px; 
+    align-items: start; 
+    margin-bottom: 80px;
+}
+
+.exh-about-section {
+    width: 100%;
+}
+
+.exh-about-section h2 { 
+    font-family: var(--font-serif); 
+    font-size: 2.2rem; 
+    color: var(--text-main); 
+    margin-bottom: 25px; 
+    border-bottom: 1px solid #e2e8f0; 
+    padding-bottom: 15px;
+}
+
+.exh-about-section p { 
+    font-size: 1.1rem; 
+    color: #475569; 
+    line-height: 1.8; 
+    white-space: pre-wrap;
+    word-break: break-all; 
+    max-width: 950px; 
+}
+
+/* Блоки справа (щоб вони не ставали занадто широкими) */
+.exh-sidebar-section {
+    width: 100%;
+    max-width: 400px;
+}
+.exh-sidebar-card { background: #fff; padding: 35px; border-radius: 25px; border: 1px solid #e2e8f0; margin-bottom: 30px; }
+.exh-sidebar-card h3 { font-size: 1rem; color: var(--gray-text); margin: 0 0 20px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
+
+.author-flex { display: flex; align-items: center; gap: 20px; }
+.author-flex img { width: 70px; height: 70px; border-radius: 50%; object-fit: cover; }
+.author-flex h4 { margin: 0 0 5px; font-size: 1.2rem; color: var(--text-main); }
+.author-flex span { font-size: 0.9rem; color: var(--gray-text); display: block; margin-bottom: 8px;}
+   
+   /* Виправлення синього посилання */
+   .link-underlined { color: var(--text-main) !important; font-weight: 700; text-decoration: none; border-bottom: 1px solid var(--text-main); padding-bottom: 2px; transition: 0.2s; display: inline-block;}
+   .link-underlined:hover { color: #10b981 !important; border-color: #10b981;}
+   
+   /* 4. Блок "Роботи на виставці" (Нижній Свайпер) */
+   .exh-artworks-section { border-top: 1px solid #e2e8f0; padding-top: 60px; margin-bottom: 80px;}
+   .exh-artworks-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+   .exh-artworks-header h2 { font-family: var(--font-serif); font-size: 2.2rem; color: var(--text-main); margin: 0; }
+   
+   /* Кастомні стилі для Swiper (Білі кнопки) */
+   .exh-artworks-slider .swiper-button-next,
+   .exh-artworks-slider .swiper-button-prev {
+       background: #fff;
+       color: var(--text-main) !important; /* Чорні стрілочки */
+       width: 45px;
+       height: 45px;
+       border-radius: 50%;
+       box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+   }
+   .exh-artworks-slider .swiper-button-next:after,
+   .exh-artworks-slider .swiper-button-prev:after {
+       font-size: 1.2rem !important;
+   }
+   
+   @media (max-width: 1024px) { 
+       .exh-hero-grid, .exh-content-grid { grid-template-columns: 1fr; gap: 40px; } 
+       .exh-hero-image { height: 400px; }
+   }
+   .invest-form label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-main);
+    margin-bottom: 12px; /* Збільшили відступ (було 5px) */
+    display: block;
+}
+.invest-form input {
+    width: 100%;
+    padding: 15px 20px;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    background: #f8fafc;
+    outline: none;
+    margin-bottom: 25px; /* Збільшили відступ до кнопки (було 15px) */
+    transition: 0.3s;
+}
+/* =========================================
+   СЕКЦІЯ КОМЕНТАРІВ (ПОВНИЙ РЕДИЗАЙН)
+   ========================================= */
+   .comments-section { 
+    margin-top: 60px; 
+    padding-top: 40px; 
+    border-top: 1px solid #e2e8f0; 
+}
+.comments-section h3 { 
+    font-family: var(--font-serif); 
+    font-size: 1.8rem; 
+    color: var(--text-main); 
+    margin-bottom: 30px; 
+}
+
+/* Форма введення */
+.comments-section textarea { 
+    width: 100% !important; 
+    padding: 15px 20px !important; 
+    border-radius: 15px !important; 
+    border: 1px solid #e2e8f0 !important; 
+    background: #ffffff !important; 
+    outline: none !important; 
+    margin-bottom: 15px !important; 
+    resize: none !important; 
+    color: var(--text-main) !important;
+}
+.comments-section textarea:focus {
+    border-color: var(--text-main) !important;
+}
+
+/* Картка коментаря (Примусовий flex та білий фон) */
+.comment-card { 
+    display: flex !important; 
+    gap: 20px !important; 
+    margin-bottom: 20px !important; 
+    background: #ffffff !important; /* Чистий білий фон */
+    padding: 20px 25px !important; 
+    border-radius: 20px !important; 
+    border: 1px solid #e2e8f0 !important; 
+    box-shadow: 0 4px 15px rgba(0,0,0,0.02) !important;
+    align-items: flex-start !important;
+}
+
+/* Аватарка (Ідеальний круг з літерою по центру) */
+.comment-avatar { 
+    width: 45px !important; 
+    height: 45px !important; 
+    border-radius: 50% !important; 
+    background: var(--text-main) !important; /* Фірмовий синій */
+    color: #ffffff !important; 
+    display: flex !important; 
+    align-items: center !important; 
+    justify-content: center !important; 
+    font-weight: 700 !important; 
+    font-size: 1.1rem !important; 
+    flex-shrink: 0 !important;
+    text-transform: uppercase;
+}
+
+.comment-content { 
+    flex-grow: 1 !important; 
+}
+.comment-content h4 { 
+    margin: 0 0 6px 0 !important; 
+    font-size: 1.05rem !important; 
+    font-weight: 700 !important;
+    color: var(--text-main) !important; 
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+}
+.comment-content h4 span { 
+    font-size: 0.8rem !important; 
+    color: #94a3b8 !important; 
+    font-weight: 500 !important;
+}
+.comment-content p { 
+    margin: 0 !important; 
+    color: #475569 !important; 
+    font-size: 0.95rem !important; 
+    line-height: 1.6 !important; 
+    text-align: left !important;
+}
