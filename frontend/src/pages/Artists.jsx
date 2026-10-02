@@ -30,7 +30,7 @@ export default function Artists() {
 
   // Завантажуємо реальних художників при відкритті сторінки
   useEffect(() => {
-    fetch('http://localhost:5000/api/artists')
+    fetch('https://vagallery-backend.onrender.com/api/artists')
       .then(res => res.json())
       .then(data => setArtists(data))
       .catch(err => console.error('Помилка завантаження художників:', err));

@@ -24,7 +24,7 @@
 
     // Завантажуємо останні схвалені картини при відкритті сторінки
     useEffect(() => {
-      fetch('http://localhost:5000/api/artworks/catalog')
+      fetch('https://vagallery-backend.onrender.com/api/artworks/catalog')
         .then(res => res.json())
         .then(data => {
           // Беремо тільки перші 3 найновіші картини

@@ -39,7 +39,7 @@ export default function ExhibitionDetails() {
   ]);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/api/exhibitions/${id}`)
+    fetch(`https://vagallery-backend.onrender.com/api/exhibitions/${id}`)
       .then(res => res.json())
       .then(data => { 
         setExh(data); 
@@ -81,7 +81,7 @@ export default function ExhibitionDetails() {
     }
 
     try {
-      const response = await fetch('http://localhost:5000/api/investments', {
+      const response = await fetch('https://vagallery-backend.onrender.com/api/investments', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

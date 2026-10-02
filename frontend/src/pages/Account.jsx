@@ -81,7 +81,7 @@ export default function Account() {
 
     // 3. Завантажуємо Wishlist з бекенду, якщо є ID
     if (savedWishlistIds.length > 0) {
-      fetch('http://localhost:5000/api/artworks/catalog')
+      fetch('https://vagallery-backend.onrender.com/api/artworks/catalog')
         .then(res => res.json())
         .then(data => {
           if (Array.isArray(data)) {
@@ -99,13 +99,13 @@ export default function Account() {
     // 5. ВИТЯГУЄМО ДАНІ З БЕКЕНДУ (ДЛЯ МИТЦЯ ТА АДМІНА)
     if (parsedUser.role === 'artist') {
       // Завантажуємо роботи
-      fetch(`http://localhost:5000/api/artworks/artist/${parsedUser.id}`)
+      fetch(`https://vagallery-backend.onrender.com/api/artworks/artist/${parsedUser.id}`)
         .then(res => res.json())
         .then(data => setMyArtworks(Array.isArray(data) ? data : []))
         .catch(() => setMyArtworks([]));
 
       // ЗАВАНТАЖУЄМО ВИСТАВКИ (ВИПРАВЛЕНО!)
-      fetch(`http://localhost:5000/api/exhibitions/artist/${parsedUser.id}`)
+      fetch(`https://vagallery-backend.onrender.com/api/exhibitions/artist/${parsedUser.id}`)
         .then(res => res.json())
         .then(data => {
           // ТУТ ВАЖЛИВО: примусово робимо масивом, щоб .map() не ламався
@@ -119,7 +119,7 @@ export default function Account() {
     }
 
     if (parsedUser.role === 'admin') {
-      fetch(`http://localhost:5000/api/artworks/pending`)
+      fetch(`https://vagallery-backend.onrender.com/api/artworks/pending`)
         .then(res => res.json())
         .then(data => setPendingArtworks(Array.isArray(data) ? data : []))
         .catch(() => setPendingArtworks([]));
@@ -175,7 +175,7 @@ export default function Account() {
     if (coverFile) formData.append('cover', coverFile); 
 
     try {
-      const response = await fetch(`http://localhost:5000/api/users/${user.id}`, { method: 'PUT', body: formData });
+      const response = await fetch(`https://vagallery-backend.onrender.com/api/users/${user.id}`, { method: 'PUT', body: formData });
       if (response.ok) {
         const data = await response.json();
         localStorage.setItem('user', JSON.stringify(data.user));
@@ -218,7 +218,7 @@ const handleAddArtwork = async (e) => {
   if (selectedFile) formData.append('image', selectedFile);
 
   try {
-    const response = await fetch('http://localhost:5000/api/artworks', {
+    const response = await fetch('https://vagallery-backend.onrender.com/api/artworks', {
       method: 'POST',
       body: formData,
     });
@@ -281,7 +281,7 @@ const handleAddExhibition = async (e) => {
       formData.append('image', exhSelectedFile);
   }
   try {
-    const response = await fetch('http://localhost:5000/api/exhibitions', { 
+    const response = await fetch('https://vagallery-backend.onrender.com/api/exhibitions', { 
         method: 'POST', 
         body: formData 
     });
@@ -312,7 +312,7 @@ const handleAddExhibition = async (e) => {
     const isConfirmed = window.confirm("Ви впевнені, що хочете видалити цю роботу?");
     if (isConfirmed) {
       try {
-        const response = await fetch(`http://localhost:5000/api/artworks/${id}`, { method: 'DELETE' });
+        const response = await fetch(`https://vagallery-backend.onrender.com/api/artworks/${id}`, { method: 'DELETE' });
         if (response.ok) setMyArtworks(myArtworks.filter(art => art.id !== id));
       } catch (err) { console.error(err); }
     }
@@ -320,7 +320,7 @@ const handleAddExhibition = async (e) => {
 
   const handleUpdateStatus = async (id, newStatus) => {
     try {
-      const response = await fetch(`http://localhost:5000/api/artworks/${id}/status`, {
+      const response = await fetch(`https://vagallery-backend.onrender.com/api/artworks/${id}/status`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ status: newStatus }),
@@ -388,7 +388,7 @@ const profileProgress = calculateProfileProgress();
   const handleDeleteExhibition = async (id) => {
     if (window.confirm("Ви впевнені, що хочете видалити цю виставку?")) {
       try {
-        await fetch(`http://localhost:5000/api/exhibitions/${id}`, { method: 'DELETE' });
+        await fetch(`https://vagallery-backend.onrender.com/api/exhibitions/${id}`, { method: 'DELETE' });
         // Онови локальний список (заміни myExhibitions на назву свого стейту)
         setMyExhibitions(prev => prev.filter(e => e.id !== id));
       } catch (err) { alert("Помилка видалення"); }

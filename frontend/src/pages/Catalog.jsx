@@ -33,7 +33,7 @@ export default function Catalog() {
       setSoldItems(purchased.map(item => item.id));
     }
 
-    fetch('http://localhost:5000/api/artworks/catalog')
+    fetch('https://vagallery-backend.onrender.com/api/artworks/catalog')
       .then(res => res.json())
       .then(data => setArtworks(data))
       .catch(err => console.error('Помилка завантаження каталогу:', err));

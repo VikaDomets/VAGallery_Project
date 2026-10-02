@@ -8,7 +8,7 @@ export default function Exhibition() {
   const [exhibitions, setExhibitions] = useState([]); 
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/exhibitions')
+    fetch('https://vagallery-backend.onrender.com/api/exhibitions')
       .then(res => res.json())
       .then(data => setExhibitions(data))
       .catch(err => console.error('Помилка завантаження виставок:', err));

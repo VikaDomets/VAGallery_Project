@@ -27,7 +27,7 @@ export default function ArtworkDetails() {
   });
 
   useEffect(() => {
-    fetch(`http://localhost:5000/api/artworks/${id}`)
+    fetch(`https://vagallery-backend.onrender.com/api/artworks/${id}`)
       .then(res => res.json())
       .then(data => { setArt(data); setLoading(false); })
       .catch(err => { console.error(err); setLoading(false); });

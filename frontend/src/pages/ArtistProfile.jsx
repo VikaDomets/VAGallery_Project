@@ -27,7 +27,7 @@ export default function ArtistProfile() {
   });
 
   useEffect(() => {
-    fetch(`http://localhost:5000/api/artists/${id}`)
+    fetch(`https://vagallery-backend.onrender.com/api/artists/${id}`)
       .then(res => {
         if (!res.ok) throw new Error('Художника не знайдено');
         return res.json();
